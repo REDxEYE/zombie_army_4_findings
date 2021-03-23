@@ -1,0 +1,44 @@
+//------------------------------------------------
+//--- 010 Editor v10.0.2 Binary Template
+//
+//      File: 
+//   Authors: 
+//   Version: 
+//   Purpose: 
+//  Category: 
+// File Mask: 
+//  ID Bytes: 
+//   History: 
+//------------------------------------------------
+
+
+uint32 mesh_count;
+uint32 vertices_count;
+uint32 indices_count;
+uint32 polygon_count;
+uint32 unk_count;
+
+struct Mesh{
+    uint32 hash <format=hex>;
+    uint32 unk_0;
+    uint32 indices_count;
+    uint32 unk_1;
+    uint32 unk_2;
+    uint32 unk_3;
+};
+
+Mesh mehses[mesh_count];
+
+float bbox[6];
+
+struct Vertex{
+    byte unk_0[10];
+    hfloat pos[3];
+    byte unk_1[2];
+    uint16 const_values[3];
+    hfloat uv_0[2];
+    hfloat uv_1[2];
+    uint32 unk_12[4];
+};
+
+Vertex vertices[vertices_count];

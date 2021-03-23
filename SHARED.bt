@@ -1,0 +1,33 @@
+//------------------------------------------------
+//--- 010 Editor v10.0.2 Binary Template
+//
+//      File: 
+//   Authors: 
+//   Version: 
+//   Purpose: 
+//  Category: 
+// File Mask: 
+//  ID Bytes: 
+//   History: 
+//------------------------------------------------
+struct Vector3{
+    float x;
+    float y;
+    float z;
+};
+
+string read_padded_string(string str){
+    local uint32 len = Strlen(str);
+    local uint32 skip = (Ceil((len + 1) / 4.0) * 4) - (len + 1);
+    FSkip(skip);
+    return str;
+};
+
+struct ChunkHeader{
+
+    char chunk_magic[4];
+    uint chunk_size;
+    uint chunk_version;
+    uint unk;
+
+};

@@ -1,0 +1,32 @@
+//------------------------------------------------
+//--- 010 Editor v10.0.2 Binary Template
+//
+//      File: 
+//   Authors: 
+//   Version: 
+//   Purpose: 
+//  Category: 
+// File Mask: 
+//  ID Bytes: 
+//   History: 
+//------------------------------------------------
+#include "./SHARED.bt"
+
+ChunkHeader header;
+
+uint block_count;
+
+struct SubBlock (uint width, uint height){
+  char data[width*height*4];
+};
+
+struct Block{
+  uint unk_0;
+  uint sub_block_count;
+  uint width;
+  uint height;
+  SubBlock subblocks(width,height)[sub_block_count] <optimize=false>;
+    
+};
+
+Block blocks[block_count];

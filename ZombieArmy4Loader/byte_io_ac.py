@@ -6,6 +6,8 @@ from io import BytesIO
 from pathlib import Path
 from typing import Union, BinaryIO
 
+import math
+
 
 class OffsetOutOfBounds(Exception):
     pass
@@ -13,6 +15,10 @@ class OffsetOutOfBounds(Exception):
 
 def split(array, n=3):
     return [array[i:i + n] for i in range(0, len(array), n)]
+
+
+def get_pad(string):
+    return (math.ceil((len(string) + 1) / 4) * 4) - (len(string) + 1)
 
 
 class ByteIO:
@@ -28,7 +34,7 @@ class ByteIO:
             file = path_or_file_or_data
             self.file = file
         elif type(path_or_file_or_data) is str or isinstance(path_or_file_or_data, Path):
-            mode = 'rb' if open_to_read else 'wb+'
+            mode = 'rb' if open_to_read else 'wb'
             self.file = open(path_or_file_or_data, mode)
 
         elif type(path_or_file_or_data) in [bytes, bytearray]:
@@ -54,7 +60,7 @@ class ByteIO:
         return "<ByteIO {}/{}>".format(self.tell(), self.size())
 
     def close(self):
-        if hasattr(self.file, 'mode') and 'w' in getattr(self.file, 'mode'):
+        if hasattr(self.file, 'close'):
             self.file.close()
 
     def rewind(self, amount):
@@ -296,6 +302,11 @@ class ByteIO:
 
     def __bool__(self):
         return self.tell() < self.size()
+
+    def read_ascii_padded(self):
+        string = self.read_ascii_string()
+        self.skip(get_pad(string))
+        return string
 
 
 if __name__ == '__main__':

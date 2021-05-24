@@ -11,30 +11,6 @@ from utils import get_pad
 
 file = r"D:\SteamLibrary\steamapps\common\ZombieArmy4\UNPACK\chunks\common\HMPT\1a1e3020.chunk"
 
-
-# ChunkHeader header;
-#
-# uint count;
-# string name;
-# read_padded_string(name);
-#
-#
-# struct Bone{
-#
-#     uint unk1;
-#     uint unk2;
-#     uint unk3;
-#     Vector3 pos;
-#     Vector3 unk4;
-#     Vector3 unk5;
-#     uint unk6;
-#     string name;
-#     read_padded_string(name);
-#
-# };
-#
-# Bone bones[count] <optimize=false>;
-
 class Bone:
     def __init__(self, reader: ByteIO):
         (self.unk_0, self.unk_1, self.unk_2) = reader.read_fmt('3I')

@@ -2,7 +2,7 @@ from pathlib import Path
 
 from PIL.Image import open
 
-root = Path(r'D:\SteamLibrary\steamapps\common\ZombieArmy4\UNPACK\graphics\characters\zap_characters\zombies\zombie_shark\final')
+root = Path(r'D:\SteamLibrary\steamapps\common\ZombieArmy4\UNPACK\graphics\characters\zap_characters\zombies\zombie_german_officer\zombie_german_officer_commander\final')
 
 for file in root.glob('*.dds'):
     try:

@@ -5,9 +5,10 @@ from pathlib import Path
 import bpy
 import numpy as np
 
+from ZombieArmy4Loader.byte_io_ac import ByteIO
+
 sys.path.append(r'F:\PYTHON_STUFF\ZombieArmy4')
 
-from byte_io_ac import ByteIO
 
 
 def get_material(mat_name, model_ob):

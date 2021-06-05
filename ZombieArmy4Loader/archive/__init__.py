@@ -10,6 +10,7 @@ from ZombieArmy4Loader.chunks.rscf import RSCF
 from ZombieArmy4Loader.chunks.rsfl import RSFL
 
 
+# noinspection PyPep8Naming
 class Archive:
     def __init__(self, filepath: Union[Path, str]):
         self.filepath = Path(filepath)
@@ -20,8 +21,10 @@ class Archive:
             # _zipped = True
             raise NotImplementedError(f'{magic} is not supported')
         elif magic == 'AsuraZlb':
+            assert self.reader.read_uint32() == 0
             self.reader = ZlibByteIO(self.reader, 0x14, False)
             self.reader.skip(8)
+
         elif magic == 'AsuraZbb':
             self.reader = ZlibByteIO(self.reader, 0, True)
             self.reader.skip(8)

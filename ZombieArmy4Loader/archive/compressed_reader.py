@@ -40,7 +40,10 @@ class ZlibByteIO(ByteIO):
                 if not self._chunked:
                     compressed_block_size = reader.size()
                     compressed_block_size -= self._uoffset
-                self._block_offsets.append((reader.tell(), decompressed_block_size, compressed_block_size))
+                    offset = reader.tell()-4
+                else:
+                    offset = reader.tell()
+                self._block_offsets.append((offset, decompressed_block_size, compressed_block_size))
                 accumulator += decompressed_block_size
                 self._offsets.append(accumulator)
                 reader.skip(compressed_block_size)

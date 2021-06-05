@@ -1,0 +1,18 @@
+//------------------------------------------------
+//--- 010 Editor v10.0.2 Binary Template
+//
+//      File: 
+//   Authors: 
+//   Version: 
+//   Purpose: 
+//  Category: 
+// File Mask: 
+//  ID Bytes: 
+//   History: 
+//------------------------------------------------
+#include "./SHARED.bt"
+
+ChunkHeader header;
+
+local uint version = header.chunk_version;
+local uint flags = header.flags;

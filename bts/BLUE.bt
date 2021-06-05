@@ -1,0 +1,53 @@
+//------------------------------------------------
+//--- 010 Editor v10.0.2 Binary Template
+//
+//      File: 
+//   Authors: 
+//   Version: 
+//   Purpose: 
+//  Category: 
+// File Mask: 
+//  ID Bytes: 
+//   History: 
+//------------------------------------------------
+
+#include "./SHARED.bt"
+
+ChunkHeader header;
+
+local uint v5 = header.chunk_version >> 31;
+local uint version = header.chunk_version;
+local uint flags = header.flags;
+
+if ( v5 ){
+    uchar unk;
+    uchar unk2;
+}
+local uint unk3_ = 0;
+if (!version){
+    uint unk3;
+    unk3_ = unk3;
+}
+
+struct SubBlock{
+    uint unk;
+
+};
+
+struct Block{
+    uint unk;
+    if ( (flags & 1) != 0 ){
+        string name;
+        read_padded_string(name);
+    }
+    uint count;
+    SubBlock subblocks[count];
+};
+
+if ( version || unk3_ == 3 ){
+    uint count;
+    Block blocks[count];
+    
+    
+}
+

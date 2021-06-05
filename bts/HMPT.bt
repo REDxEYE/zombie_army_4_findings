@@ -1,0 +1,35 @@
+//------------------------------------------------
+//--- 010 Editor v10.0.2 Binary Template
+//
+//      File: 
+//   Authors: 
+//   Version: 
+//   Purpose: 
+//  Category: 
+// File Mask: 
+//  ID Bytes: 
+//   History: 
+//------------------------------------------------
+#include "./SHARED.bt"
+
+ChunkHeader header;
+
+uint count;
+string name;
+read_padded_string(name);
+
+
+struct Bone{
+    
+    uint unk1;
+    uint unk2;
+    uint unk3;
+    float unk_floats[9];
+    uint unk6;
+
+    string name;
+    read_padded_string(name);
+
+};
+
+Bone bones[count] <optimize=false>;

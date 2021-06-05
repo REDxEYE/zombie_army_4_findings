@@ -1,0 +1,95 @@
+//------------------------------------------------
+//--- 010 Editor v10.0.2 Binary Template
+//
+//      File: 
+//   Authors: 
+//   Version: 
+//   Purpose: 
+//  Category: 
+// File Mask: 
+//  ID Bytes: 
+//   History: 
+//------------------------------------------------
+#include "./SHARED.bt"
+
+ChunkHeader header;
+
+local uint version = header.chunk_version;
+local uint flags = header.flags;
+
+struct Block{
+    uchar unk[60];
+    
+};
+struct Block2{
+    uchar unk[40];
+    float scale[3];
+    float offset[3];
+    
+};
+
+struct PropPos{
+    float offset[3];
+    uint unk[52/4];
+    
+};
+
+struct Block4{
+    uint unk[4];
+    float unk1[3];
+    uint unk2[4];
+    float unk3[2];
+    uint unk4[3];
+    
+};
+
+
+if (version<=18 && version>=16){
+    uint unkl;
+
+
+    PropPos prop_pos[unkl];
+    uint32 unk3;
+    if(version<18){
+        uint unk4[5];
+    }
+    if(version ==15 || version==16){
+        Block blocks[unk3];
+    }else{
+        Block4 blocks[unk3];
+    }
+    uint32 unk4;
+    Block2 blocks2[unk4];
+
+    local uchar result = false;
+
+    {
+        uint32 unk5;    
+        local uint32 v5 = unk5 >> 31;
+        local uint32 v6 = unk5 & 0xFFFFFF;
+    
+        if(!v6){
+            result = false;
+        }
+        if ( v6 > 2 || !v5 ){
+            result = v6 <= 2;
+        }
+        if (v6 || (v6<2 || v5)){
+            uchar unk6;
+            if(unk6){
+                result = false;
+            }else{
+                uint unk7;
+                result = true;
+            }
+            
+        }
+    }
+
+    if(result){
+        uint unk8;
+  
+    }
+
+    uint32 unk9;
+}   

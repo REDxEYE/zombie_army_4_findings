@@ -1,0 +1,21 @@
+//------------------------------------------------
+//--- 010 Editor v10.0.2 Binary Template
+//
+//      File: 
+//   Authors: 
+//   Version: 
+//   Purpose: 
+//  Category: 
+// File Mask: 
+//  ID Bytes: 
+//   History: 
+//------------------------------------------------
+#include "./SHARED.bt"
+
+ChunkHeader header;
+
+uint count1;
+uint count2;
+
+Vector3 vertices[count1];
+ushort indices[count2];

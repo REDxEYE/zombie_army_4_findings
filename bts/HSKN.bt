@@ -1,0 +1,121 @@
+//------------------------------------------------
+//--- 010 Editor v10.0.2 Binary Template
+//
+//      File: 
+//   Authors: 
+//   Version: 
+//   Purpose: 
+//  Category: 
+// File Mask: 
+//  ID Bytes: 
+//   History: 
+//------------------------------------------------
+#include "./SHARED.bt"
+
+ChunkHeader header;
+
+uint unk;
+uint count;
+
+string name;
+read_padded_string(name);
+
+if(unk && (header.flags & 0x40)==0){
+    local uint skip = 72;
+    if(header.chunk_version>=25){
+        skip = 144;
+    }
+    Printf("Skipped %i",skip*unk);
+    FSkip(unk*skip);
+}
+
+struct PosRot{
+    float pos[3];
+    float rot[4];
+    //uchar unk[28];
+
+};
+
+struct SizeOf28{
+    uchar unk[28];
+
+};
+
+
+struct BoneData{
+    uint unk1;
+
+    local uint v4 = unk1;
+    local uint v5 = unk1 >> 31;
+    local uint v6 = v4 & 0xFFFFFF;
+    if(v6>10 && (v6<16 || v5)){
+        uchar byte11;
+        if(byte11==0){
+            uint field_18;
+        }
+    }
+
+};
+
+struct Bone{
+    string name;
+    read_padded_string(name);
+    if(header.chunk_version>=10){
+        uchar unk2;
+    }
+    uint32 unk3;
+
+    if(unk3){
+        BoneData bonedata;
+        uchar data[unk3-5];
+    }
+};
+
+struct HSKN{
+    uint32 block_unk[count];
+    PosRot pos_rot[count];
+    
+    if(header.chunk_version>=10){
+        uchar unk;
+    }
+    
+    if(count>0){
+        Bone bones[count] <optimize=false>;
+    }
+    
+    if(header.chunk_version >= 5 && (header.flags & 2)!=0){
+        uint32 unk3[6];
+    }
+
+    if(header.chunk_version >= 6 && (header.flags & 4)!=0){
+        uint32 unk4;
+    }
+    if(header.chunk_version >= 7){
+        uint32 unk5[count];
+    }
+    
+    if(header.chunk_version >= 8 && (header.flags & 0x10)!=0){
+        SizeOf28 unk6[count];
+    }
+
+    if(header.chunk_version >= 9 && (header.flags & 0x20)!=0){
+        uint32 unk7[count];
+    }
+
+    if(header.chunk_version >= 11){
+        uint32 unk8;
+    }
+    
+    if((header.flags & 0x00FF)!=0 && header.chunk_version>=12){
+        uint32 unk9;
+        if(count>0){
+            uint32 unk10[count];
+        }
+    }
+    if(header.chunk_version >= 13){
+        uint32 unk11;
+    }
+
+};
+
+HSKN hskn;

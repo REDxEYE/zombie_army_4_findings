@@ -1,0 +1,31 @@
+//------------------------------------------------
+//--- 010 Editor v10.0.2 Binary Template
+//
+//      File: 
+//   Authors: 
+//   Version: 
+//   Purpose: 
+//  Category: 
+// File Mask: 
+//  ID Bytes: 
+//   History: 
+//------------------------------------------------
+#include "./SHARED.bt"
+
+ChunkHeader header;
+
+uint unk;
+if(header.chunk_version>=2){
+    uchar unk2;
+}
+
+struct StreamingAsset{
+    string name;
+    read_padded_string(name);
+    uchar unk;
+    uint offset;
+    uint size;
+
+};
+
+StreamingAsset assets[unk] <optimize=false>;

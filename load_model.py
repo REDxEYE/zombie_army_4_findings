@@ -72,7 +72,7 @@ def create_armature(hskn: HSKN):
     return armature_obj
 
 
-def import_model(model_path: Path):
+def import_model(model_path: Path, is_se3=False):
     assert model_path.exists(), f'Missing "{model_path}" file'
     skeleton_path = model_path.with_suffix('.skeleton')
     if skeleton_path.exists():
@@ -85,13 +85,12 @@ def import_model(model_path: Path):
     mesh_reader = ByteIO(model_path)
 
     mesh_name = Path(model_path).stem
-    model_file = Model(mesh_reader)
+    model_file = Model(mesh_reader, is_se3)
 
     vertex_data = model_file.vertex_data
 
     pos = ((vertex_data['pos'] / 32767) * (model_file.scale / 2)) + model_file.offset / 2
     normals = vertex_data['unk'].copy() / 32768
-    unk_const = vertex_data['unk_const']
 
     mesh_data = bpy.data.meshes.new(f'{mesh_name}_MESH')
     mesh_obj = bpy.data.objects.new(f'{mesh_name}', mesh_data)
@@ -134,11 +133,11 @@ def import_model(model_path: Path):
     # mesh_data.normals_split_custom_set_from_vertices(normals)
     # mesh_data.use_auto_smooth = True
     if hskn_file:
-        bone_names = [bone.name for bone in hskn_file.bones]
+        bone_names = {n: bone.name for (n, bone) in enumerate(hskn_file.bones)}
     else:
-        bone_names = [f"bone_{a}" for a in np.unique(vertex_data['bone_ids'])]
+        bone_names = {a: f"bone_{a}" for a in np.unique(vertex_data['bone_ids'])}
 
-    weight_groups = {bone: mesh_obj.vertex_groups.new(name=bone) for bone in bone_names}
+    weight_groups = {bone: mesh_obj.vertex_groups.new(name=bone) for bone in bone_names.values()}
 
     for n, (bone_indices, bone_weights) in enumerate(zip(vertex_data['bone_ids'], vertex_data['weights'] / 255)):
         for bone_index, weight in zip(bone_indices, bone_weights):
@@ -149,5 +148,5 @@ def import_model(model_path: Path):
 
 
 if __name__ == '__main__':
-    file_path = Path(r"D:\SteamLibrary\steamapps\common\ZombieArmy4\UNPACK\witheredzombie_n.model")
-    import_model(file_path)
+    file_path = Path(r"C:\Users\MED45\Downloads\red_se3karl.model")
+    import_model(file_path, is_se3=True)

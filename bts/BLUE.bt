@@ -30,7 +30,7 @@ if (!version){
 }
 
 struct SubBlock{
-    uint unk;
+    char unk[26];
 
 };
 

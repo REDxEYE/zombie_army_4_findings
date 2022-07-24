@@ -1,0 +1,39 @@
+//------------------------------------------------
+//--- 010 Editor v10.0.2 Binary Template
+//
+//      File: 
+//   Authors: 
+//   Version: 
+//   Purpose: 
+//  Category: 
+// File Mask: 
+//  ID Bytes: 
+//   History: 
+//------------------------------------------------
+#include "./SHARED.bt"
+
+ChunkHeader header;
+
+struct Source{
+    string name;
+    read_padded_string(name);
+};
+
+uint32 source_count;
+uint texture_count;
+
+Source sources[source_count]<optimize=false>;
+
+struct Block{
+    uint unk1;
+
+    uint data_offset;
+    uint data_size;
+    uint unk4;
+    uint unk5;
+    uint unk6;
+    uint unk7;
+
+};
+
+Block blocks[texture_count];

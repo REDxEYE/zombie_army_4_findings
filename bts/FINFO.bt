@@ -14,9 +14,7 @@
 
 ChunkHeader header;
 
-uint block_count;
-
-uint unk;
-uint width,height,layers;
-
-ubyte image_data[width*height*layers*4];
+local uint version = header.chunk_version;
+local uint flags = header.flags;
+uint32 total_size;
+uint32 unk;
